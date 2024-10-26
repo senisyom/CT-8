@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { INewQuote } from "../../types";
+import { categories } from "../../constants";
 
 const initiaStateQuote: INewQuote = {
   id: undefined,
@@ -41,19 +42,19 @@ const SubmitNewQuote = () => {
       <div className="container w-50 mx-auto mt-4">
         <h2 className="mb-4">Submit new quote</h2>
         <form onSubmit={onButtonSubmit}>
+          <span>Category</span>
           <select
-            className="form-select mb-4"
+            className="form-select mb-4 mt-3"
             aria-label="Default select example"
             name="category"
             value={quote.category}
             onChange={onChangeField}
           >
-            <option disabled selected>
-              Category
-            </option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.title}
+              </option>
+            ))}
           </select>
           <div className="form-floating mb-4">
             <textarea

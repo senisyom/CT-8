@@ -8,7 +8,7 @@ const ToolBar = () => {
 
         <ul className="navbar-nav mr-auto flex-row gap-2 flex-nowrap">
           <li className="nav-item">
-            <NavLink to="/" className="nav-link">
+            <NavLink to="/quotes" className="nav-link">
               Quotes
             </NavLink>
           </li>

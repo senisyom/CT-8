@@ -1,5 +1,6 @@
-import { Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ToolBar from "./components/ToolBar/ToolBar";
+import SubmitNewQuote from "./components/SubmitNewQuote/SubmitNewQuote";
 
 
 const App = () => {
@@ -7,7 +8,9 @@ const App = () => {
     <>
     <header><ToolBar/></header>
       <div>
-        <Routes></Routes>
+        <Routes>
+          <Route path='/add-quote' element={<SubmitNewQuote/>}></Route>
+        </Routes>
       </div>
     </>
   );

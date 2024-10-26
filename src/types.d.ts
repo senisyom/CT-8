@@ -1,6 +1,6 @@
-interface INewQuote {
-  id: string;
+export interface INewQuote {
+  id?: string;
   category: string;
-  auhtor: string;
+  authour: string;
   text: string;
 }

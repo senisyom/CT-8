@@ -1,11 +1,13 @@
-import QuoteList from "../components/QuoteList/QuoteList"
+import QuoteCard from "../components/QuoteCard/QuoteCard";
+
+
 
 const Container = () => {
-    return (
-        <div className="container container-sm d-flex">
-            <QuoteList/>
-        </div>
-    )
-}
+  return (
+    <div className="container container-sm d-flex gap-3">
+        <QuoteCard />
+    </div>
+  );
+};
 
-export default Container
+export default Container;

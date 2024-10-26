@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { INewQuote } from "../../types";
 import { categories } from "../../constants";
+import axiosAPI from "../../axiosAPI";
 
 const initiaStateQuote: INewQuote = {
   id: undefined,
@@ -32,9 +33,12 @@ const SubmitNewQuote = () => {
       text: quote.text,
       category: quote.category,
     };
-    console.log(newQuote);
-
-    setQuote({ category: "", authour: "", text: "" });
+    try {
+       axiosAPI.post('quotes.json', newQuote);
+      setQuote(initiaStateQuote);
+    } catch {
+      console.log(console.error);
+    }
   };
 
   return (

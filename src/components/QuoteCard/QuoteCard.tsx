@@ -10,7 +10,7 @@ const QuoteCard = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response: { data: QuotesAPI } = await axiosAPI<QuotesAPI>(
+      const response: { data: QuotesAPI } = await axiosAPI.get<{ [key: string]: INewQuote }>(
         "quotes.json"
       );
 
@@ -20,6 +20,7 @@ const QuoteCard = () => {
             ...response.data[quoteKey],
             id: quoteKey,
           }))
+        
 
         setQuotes(quotesFromAPI);
       } else {
@@ -29,6 +30,15 @@ const QuoteCard = () => {
       console.error(error);
     }
   }, []);
+
+  const deleteQuote = async (quoteId: string) => {
+    if (quoteId) {
+      await axiosAPI.delete(`posts/${quoteId}.json`);
+      setQuotes((prevQuotes) =>
+        prevQuotes.filter((quote) => quote.id !== quoteId)
+      );
+    }
+  };
 
   useEffect(() => {
     void fetchData();
@@ -45,17 +55,17 @@ const QuoteCard = () => {
   return (
     <div className="container container-sm d-flex gap-3">
       <QuoteList/>
-      <div className="card m-4">
+      <div className="card m-5">
         {quotes.map((quote) => (
           (!categoryId || quote.category === categoryId) && (
-          <div key={quote.id}>
+          <div key={quote.id} className="mb-4">
             <div className="card-header">{quote.category}</div>
             <div className="card-body">
               <h5 className="card-title m-3">{quote.text}</h5>
               <p>- {quote.authour}</p>
             </div>
             <button className="btn btn-primary m-3">Edit</button>
-            <button className="btn btn-primary">Delete</button>
+              <button className="btn btn-primary" onClick={() => deleteQuote(quote.id!)}>Delete</button>
             </div>
           )
         ))}

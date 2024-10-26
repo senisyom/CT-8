@@ -4,3 +4,7 @@ export interface INewQuote {
   authour: string;
   text: string;
 }
+
+export interface QuotesAPI {
+  [id: string]: INewQuote;
+}

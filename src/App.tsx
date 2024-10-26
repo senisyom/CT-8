@@ -1,9 +1,14 @@
+import { Routes } from "react-router-dom";
+import ToolBar from "./components/ToolBar/ToolBar";
 
 
 const App = () => {
   return (
     <>
-      <div></div>
+    <header><ToolBar/></header>
+      <div>
+        <Routes></Routes>
+      </div>
     </>
   );
 };
